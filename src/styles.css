@@ -1,0 +1,33 @@
+/* You can add global styles to this file, and also import other style files */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul, ol {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+@font-face {
+  font-family: 'Gilroy';
+  src: url('./assets/fonts/Gilroy-Semibold.ttf');
+}
+
+@font-face {
+  font-family: 'Marriweather';
+  src: url('./assets/fonts/Merriweather-Black.ttf');
+}
+:root {
+  --font--gilroy: 'Gilroy';
+  --font--Marriweather: 'Marriweather';
+  --main--ligth-color: #FFFFFF;
+  --main--red--color: #D3320F;
+  --main--color--dark: #191411;
+  --bg: #191411;
+  --dark-gray: #353535;
+  --light--gray: #757575
+}

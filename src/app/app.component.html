@@ -1,0 +1,165 @@
+<header class="header">
+      <nav class="navbar">
+         <div class="container">
+            <div class="navbar__wrapper">
+               <div class="navbar__logo">
+                  <a href="">
+                     <img src="./assets/icons/navbar/Logo.png" alt="">
+                  </a>
+               </div>
+               <div class="navbar__links">
+                  <ul>
+                     <li (click)="scrollTo(why)"><a>Почему у нас</a></li>
+                     <li (click)="scrollTo(products)"><a>Меню бургеров</a></li>
+                     <li (click)="scrollTo(order)"><a>Оформление заказа</a></li>
+                  </ul>
+               </div>
+               <div (click)="changeCurrency()" class="navbar__currency">
+                  {{currency}}
+               </div>
+            </div>
+         </div>
+      </nav>
+      <div class="header__body">
+        <div class="container">
+        <div class="header__body__wrapper">
+            <div class="header__body__text">
+               <div class="header__body__advertaisment_block">
+                  Новое меню
+               </div>
+               <h1 class="header__body__title">
+                  бургер чеддер
+               </h1>
+               <div class="header__body__subtitle">
+                  Мы обновили наше меню, спешите попробовать сезонные новинки и насладиться отличным вкусом наших бургеров. Готовим для вас лучшие бургеры в городе из отборной мраморной говядины.
+               </div>
+               <a data-id="menu" (click)="scrollTo(products)" class="header__body__btn">
+                  Смотреть меню
+               </a>
+            </div>
+            <div class="header__body__image">
+               <img src="./assets/images/header/main_burger (1).png" alt="">
+            </div>
+        </div>
+
+        </div>
+      </div>
+   </header>
+   <section #why class="why">
+      <div class="container">
+         <h3 class="section__title">
+            почему нас выбирают?
+         </h3>
+         <div class="why__wrapper">
+
+            <div class="why__column">
+               <div class="why__column__img">
+                  <img src="./assets/icons/why/burger.png" alt="">
+               </div>
+               <div class="why__column__title">
+                  Авторские рецепты
+               </div>
+               <div class="why__column__subtitle">
+                  Наши бургеры обладают уникальным сочетанием вкусов и не похожи ни на какие другие. Мы тщательно отбираем лучшие ингредиенты и сочетания вкусов для нашего меню.
+               </div>
+            </div>
+            <div class="why__column">
+               <div class="why__column__img">
+                  <img src="./assets/icons/why/meat.png" alt="">
+               </div>
+               <div class="why__column__title">
+                  Мраморная говядина
+               </div>
+               <div class="why__column__subtitle">
+                  Для наших бургеров мы используем отборную 100% мраморную говядину, которую закупаем исключительно у фермеров. Мы уверены в качестве нашего мяса.
+               </div>
+            </div>
+            <div class="why__column">
+               <div class="why__column__img">
+                  <img src="./assets/icons/why/food truck.png" alt="">
+               </div>
+               <div class="why__column__subtitle">
+                  Мы доставляем в пределах МКАД за 30 минут, а если не успеем — доставка бесплатно. Мы тщательно упаковываем наши бургеры, чтобы по дороге они не остыли.
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   <section data-id="menu" class="burgers" #products>
+      <div class="container">
+         <h3 class="section__title">
+            выберите свой бургер
+         </h3>
+         <div class="burgers__wrapper">
+            <div class="burger__column" *ngFor="let product of productsData">
+               <div class="burger__column__img">
+                  <img src="{{product.image}}" alt="burger">
+               </div>
+               <div class="burger__column__name">
+                {{product.title}}
+               </div>
+               <div class="burger__column__subtitle">
+                {{product.text}}
+               </div>
+               <div class="burger__column__footer">
+                  <div class="burger__column__footer__info">
+                     <div data-base-price="8" class="burger__column__footer__price">
+                      {{product.price}} {{currency}}
+                     </div>
+                     <div class="burger__column__footer__wh">
+                      {{product.grams}} гр
+                     </div>
+                  </div>
+                  <div class="burger__column__footer__btn">
+                     <a >
+                        <span (click)="scrollTo(order, product)">Заказать</span>
+                        <span  class="cart__item"><img src="./assets/icons/burgers/shopping-card.png" alt=""></span>
+                     </a>
+                  </div>
+               </div>
+            </div>
+
+         </div>
+      </div>
+   </section>
+   <section #order class="order">
+      <div class="container">
+         <h3 class="section__title">
+            оформление заказа
+         </h3>
+         <div class="order__wrapper">
+            <div class="order__image">
+               <img src="./assets/images/order/order_image.png" alt="">
+            </div>
+            <div class="order__form">
+              <div class="order__form__box">
+                  <div class="order__form__box__label">
+                     Заполните все данные и наш менеджер свяжется с вами для подтверждения заказа
+                  </div>
+                  <form [formGroup]="form" class="form__for__order" action="">
+                     <div><input [class]="{'emptyInput': form.get('order')?.invalid && (form.get('order')?.dirty || form.get('order')?.touched)}" formControlName="order" id="burger_name" name="burger_name" placeholder="Выберите товар в списке" type="text" readonly></div>
+                     <div><input [class]="{'emptyInput': form.get('name')?.invalid && (form.get('name')?.dirty || form.get('name')?.touched)}" formControlName="name" name="client_name" placeholder="Ваше имя" type="text"></div>
+                     <div><input [class]="{'emptyInput': form.get('phone')?.invalid && (form.get('phone')?.dirty || form.get('phone')?.touched)}" formControlName="phone" name="phone_number" placeholder="Ваш телефон" type="tel"></div>
+                     <div>
+                        <button [disabled]="!form.valid" (click) = 'confirmOrder()'>Оформить заказ</button>
+                     </div>
+                  </form>
+              </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   <footer class="footer">
+      <div class="container">
+         <div class="footer__wrapper">
+            <div class="footer__logo">
+               <a href="">
+                  <img src="./assets/icons/navbar/Logo.png" alt="">
+               </a>
+            </div>
+            <div class="footer__copywrither">
+               Все права защищены
+            </div>
+         </div>
+      </div>
+   </footer>
